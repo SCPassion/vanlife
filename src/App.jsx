@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router"
-import Layout from "./components/Layout"
+import Layout from "./layouts/Layout"
 
 function App() {
   return (
