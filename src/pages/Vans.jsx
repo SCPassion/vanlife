@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router"
+import { Link, NavLink, useLocation } from "react-router"
 import { useState, useEffect } from "react"
 import { getAllVans } from "../api"
 
@@ -43,25 +43,27 @@ export default function Vans() {
   }
 
   const vanElements = vans.map((van) => (
-    <div key={van.id}>
-      <img
-        src={van.imageUrl}
-        alt={van.name}
-        className="mb-2.5 size-57 rounded-md"
-      />
-      <div className="flex justify-between">
-        <p>{van.name}</p>
-        <p>
-          ${van.price} <br />
-          /day
-        </p>
+    <Link key={van.id} to={van.id}>
+      <div>
+        <img
+          src={van.imageUrl}
+          alt={van.name}
+          className="mb-2.5 size-57 rounded-md"
+        />
+        <div className="flex justify-between">
+          <p>{van.name}</p>
+          <p>
+            ${van.price} <br />
+            /day
+          </p>
+        </div>
+        <div
+          className={`${typeBackgroundColor[van.type]} -mt-5 flex h-9 w-21 items-center justify-center rounded-md text-base font-semibold text-[#FFEAD0]`}
+        >
+          {van.type}
+        </div>
       </div>
-      <div
-        className={`${typeBackgroundColor[van.type]} -mt-5 flex h-9 w-21 items-center justify-center rounded-md text-base font-semibold text-[#FFEAD0]`}
-      >
-        {van.type}
-      </div>
-    </div>
+    </Link>
   ))
 
   return (
