@@ -13,16 +13,19 @@ import clsx from "clsx"
 
 export default function Vans() {
   const [vans, setVans] = useState([])
-
+  const [isPending, setIsPending] = useState(false)
   useEffect(() => {
-    async function fetchVans() {
+    async function fetch() {
+      setIsPending(true)
       const vansData = await getAllVans()
-      console.log(vansData)
       setVans(vansData)
+      setIsPending(false)
     }
 
-    fetchVans()
+    fetch()
   }, [])
+
+  console.log(isPending)
 
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
@@ -87,7 +90,13 @@ export default function Vans() {
           Clear filters
         </NavLink>
       </nav>
-      <div className="flex flex-wrap justify-center gap-8.5">{vanElements}</div>
+      {isPending ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="flex flex-wrap justify-center gap-8.5">
+          {vanElements}
+        </div>
+      )}
     </section>
   )
 }
