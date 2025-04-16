@@ -1,6 +1,11 @@
 import clsx from "clsx"
 
-export default function Button({ children, onClick, backgroundColor }) {
+export default function Button({
+  children,
+  onClick,
+  backgroundColor,
+  ...rest
+}) {
   const classNames = clsx(
     "w-full cursor-pointer rounded-md py-[11px] text-base font-bold transition-all duration-200",
     {
