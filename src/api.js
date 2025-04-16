@@ -1,7 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
-import { collection, getDocs, getFirestore } from "firebase/firestore"
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  doc,
+  getDoc,
+} from "firebase/firestore"
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -31,4 +37,13 @@ export async function getAllVans() {
     id: doc.id,
   }))
   return vans
+}
+
+export async function getVan(id) {
+  const docRef = doc(db, "vans", id)
+  const docSnap = await getDoc(docRef)
+  return {
+    ...docSnap.data(),
+    id: docSnap.id,
+  }
 }

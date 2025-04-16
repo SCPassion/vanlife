@@ -25,8 +25,6 @@ export default function Vans() {
     fetch()
   }, [])
 
-  console.log(isPending)
-
   const location = useLocation()
   const searchParams = new URLSearchParams(location.search)
   const type = searchParams?.get("type") || ""

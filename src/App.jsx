@@ -3,7 +3,7 @@ import Layout from "./layouts/Layout"
 import Dashboard from "./pages/Dashboard"
 import About from "./pages/About"
 import Vans from "./pages/Vans"
-
+import VanDetail from "./pages/VanDetail"
 function App() {
   return (
     <>
@@ -13,7 +13,7 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="about" element={<About />} />
             <Route path="vans" element={<Vans />} />
-            <Route path="vans/:id" element={<h1>Van Details</h1>} />
+            <Route path="vans/:id" element={<VanDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>
