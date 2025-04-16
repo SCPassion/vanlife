@@ -49,7 +49,7 @@ export default function Vans() {
         <img
           src={van.imageUrl}
           alt={van.name}
-          className="mb-2.5 size-57 rounded-md"
+          className="mb-2.5 size-57 rounded-md opacity-80 transition-transform duration-200 hover:scale-110 hover:opacity-100"
         />
         <div className="flex justify-between">
           <p>{van.name}</p>
