@@ -40,8 +40,11 @@ export default function Vans() {
     rugged: "bg-[#161616]",
   }
 
-  const vanElements = vans.map((van) => (
-    <Link key={van.id} to={van.id}>
+  const displayVans =
+    type === "" ? vans : vans.filter((van) => van.type === type)
+
+  const vanElements = displayVans.map((van) => (
+    <Link key={van.id} to={van.id} state={{ search: location.search }}>
       <div>
         <img
           src={van.imageUrl}
@@ -66,8 +69,8 @@ export default function Vans() {
 
   return (
     <section className="px-7 py-14">
-      <h1 className="text-4xl font-bold">Explore our van options</h1>
-      <nav className="flex items-center justify-between">
+      <h1 className="mb-6 text-4xl font-bold">Explore our van options</h1>
+      <nav className="mb-14 flex items-center justify-between">
         <NavLink
           to="?type=simple"
           className={type === "simple" ? selectClassName : normalClassName}
