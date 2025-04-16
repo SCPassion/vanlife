@@ -1,7 +1,6 @@
 import { NavLink, useLocation } from "react-router"
 export default function Header() {
   const location = useLocation()
-  console.log(location.pathname)
   return (
     <header className="flex items-center justify-between px-6 py-9">
       <NavLink to="/" className="text-2xl font-black text-black">
