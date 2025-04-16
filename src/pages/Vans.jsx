@@ -1,7 +1,7 @@
 import { Link, NavLink, useLocation } from "react-router"
 import { useState, useEffect } from "react"
 import { getAllVans } from "../api"
-
+import VanStatus from "../components/VanStatus"
 import clsx from "clsx"
 //  {
 // hostId: "123",
@@ -34,12 +34,6 @@ export default function Vans() {
 
   const selectClassName = clsx(normalClassName, "bg-black text-white")
 
-  const typeBackgroundColor = {
-    simple: "bg-[#E17654]",
-    luxury: "bg-[#115E59]",
-    rugged: "bg-[#161616]",
-  }
-
   const displayVans =
     type === "" ? vans : vans.filter((van) => van.type === type)
 
@@ -58,11 +52,7 @@ export default function Vans() {
             /day
           </p>
         </div>
-        <div
-          className={`${typeBackgroundColor[van.type]} -mt-5 flex h-9 w-21 items-center justify-center rounded-md text-base font-semibold text-[#FFEAD0]`}
-        >
-          {van.type}
-        </div>
+        <VanStatus type={van.type} margin="negative" />
       </div>
     </Link>
   ))

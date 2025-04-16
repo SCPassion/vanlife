@@ -5,7 +5,6 @@ import { BsArrow90DegLeft } from "react-icons/bs"
 
 export default function VanDetail() {
   const [van, setVan] = useState(null)
-  const [isPending, setIsPending] = useState(false)
   const { id } = useParams()
   const location = useLocation()
   const pathTo = location.state?.search || ""
@@ -20,7 +19,7 @@ export default function VanDetail() {
   }, [])
 
   return (
-    <div>
+    <div className="px-6">
       <Link
         to={`..${pathTo}`}
         relative="path"
@@ -29,6 +28,11 @@ export default function VanDetail() {
         <BsArrow90DegLeft className="size-5" />
         <p className="text-lg font-medium">Back to all vans</p>
       </Link>
+      {van !== null && (
+        <section>
+          <img src={van.imageUrl} alt={van.name} className="mt-6 mb-4 w-full" />
+        </section>
+      )}
     </div>
   )
 }
