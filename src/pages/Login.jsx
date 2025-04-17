@@ -1,16 +1,27 @@
 import Button from "../components/Button"
 import { signUp } from "../api"
+import { useFormStatus, useState } from "react"
+
 export default function Login() {
+  const [isSignUp, setIsSignUp] = useState(false)
+
+  function enableSignUp() {
+    setIsSignUp(true)
+  }
+
   async function formAction(formData) {
     const { email, password } = Object.fromEntries(formData)
     const username = email.split("@")[0]
-    const userId = await signUp({ username, email, password })
+    if (isSignUp) {
+      const userId = await signUp({ username, email, password })
+      console.log("User created with ID:", userId)
+    }
   }
 
   return (
     <div className="mt-13 mb-18 px-7">
       <h1 className="mb-12 text-center text-4xl font-bold">
-        Sign in to your account
+        {isSignUp ? "Sign up now!" : "Sign in to your account"}
       </h1>
 
       <form action={formAction} className="-center flex flex-col">
@@ -30,14 +41,20 @@ export default function Login() {
           className="round-tl- mb-5.5 rounded-b-md border border-[#D1D5DB] bg-white px-3 py-2.5"
           required
         />
+
         <Button backgroundColor="orange" type="submit">
-          Sign in
+          {isSignUp ? "Sign Up" : "Sign in"}
         </Button>
       </form>
 
       <p className="mt-12 text-center text-base font-medium">
         Don’t have an account?{" "}
-        <span className="font-bold text-[#FF8C38]">Create one now</span>
+        <span
+          onClick={enableSignUp}
+          className="cursor-pointer font-bold text-[#FF8C38] shadow-md transition-transform hover:text-black hover:underline"
+        >
+          Click here to one now
+        </span>
       </p>
     </div>
   )

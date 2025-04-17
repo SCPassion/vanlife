@@ -23,8 +23,9 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`${classNames} ${textClass}`}
+      className={`${classNames} ${textClass} disabled:cursor-not-allowed disabled:bg-gray-500`}
       type={type}
+      {...rest}
     >
       {children}
     </button>

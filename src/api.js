@@ -64,6 +64,7 @@ export async function signUp({ username, email, password }) {
 
   try {
     const docRef = await addDoc(collection(db, "users"), userData)
+    return docRef.id
   } catch (err) {
     throw new Error("Error creating user")
   }
@@ -75,3 +76,5 @@ export async function signUp({ username, email, password }) {
   //   throw new Error("Error creating user")
   // }
 }
+
+export async function signIn({ email, password }) {}
