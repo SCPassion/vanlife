@@ -4,6 +4,8 @@ export default function Button({
   children,
   onClick,
   backgroundColor,
+  type = "button",
+  textColor = "white",
   ...rest
 }) {
   const classNames = clsx(
@@ -13,8 +15,17 @@ export default function Button({
       "bg-[#161616]": backgroundColor === "black",
     },
   )
+
+  const textClass = clsx({
+    "text-white": textColor === "white",
+    "text-black": textColor === "black",
+  })
   return (
-    <button onClick={onClick} className={classNames}>
+    <button
+      onClick={onClick}
+      className={`${classNames} ${textClass}`}
+      type={type}
+    >
       {children}
     </button>
   )

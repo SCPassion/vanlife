@@ -1,4 +1,6 @@
-import { NavLink, useLocation } from "react-router"
+import { NavLink, useLocation, Link } from "react-router"
+import { IoPersonCircleOutline } from "react-icons/io5"
+
 export default function Header() {
   const location = useLocation()
   return (
@@ -19,6 +21,14 @@ export default function Header() {
         >
           Vans
         </NavLink>
+        <Link to="login">
+          <IoPersonCircleOutline
+            size={25}
+            className={
+              location.pathname.includes("/login") ? "fill-red-900" : ""
+            }
+          />
+        </Link>
       </nav>
     </header>
   )
