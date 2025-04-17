@@ -45,17 +45,17 @@ export default function Login() {
         <Button backgroundColor="orange" type="submit">
           {isSignUp ? "Sign Up" : "Sign in"}
         </Button>
-      </form>
 
-      <p className="mt-12 text-center text-base font-medium">
-        Don’t have an account?{" "}
-        <span
-          onClick={enableSignUp}
-          className="cursor-pointer font-bold text-[#FF8C38] shadow-md transition-transform hover:text-black hover:underline"
-        >
-          Click here to one now
-        </span>
-      </p>
+        <p className="mt-12 text-center text-base font-medium">
+          Don’t have an account?{" "}
+          <span
+            onClick={enableSignUp}
+            className="cursor-pointer font-bold text-[#FF8C38] shadow-md transition-transform hover:text-black hover:underline"
+          >
+            Click here to one now
+          </span>
+        </p>
+      </form>
     </div>
   )
 }
