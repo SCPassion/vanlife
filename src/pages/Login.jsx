@@ -1,8 +1,10 @@
 import Button from "../components/Button"
-
+import { signUp } from "../api"
 export default function Login() {
-  function formAction(formData) {
-    const data = Object.fromEntries(formData)
+  async function formAction(formData) {
+    const { email, password } = Object.fromEntries(formData)
+    const username = email.split("@")[0]
+    const userId = await signUp({ username, email, password })
   }
 
   return (

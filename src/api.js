@@ -7,6 +7,8 @@ import {
   getFirestore,
   doc,
   getDoc,
+  addDoc,
+  setDoc,
 } from "firebase/firestore"
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -29,6 +31,7 @@ const app = initializeApp(firebaseConfig)
 const analytics = getAnalytics(app)
 const db = getFirestore(app)
 
+// This is for getting all vans
 export async function getAllVans() {
   const vansCol = collection(db, "vans")
   const snapshot = await getDocs(vansCol)
@@ -39,6 +42,7 @@ export async function getAllVans() {
   return vans
 }
 
+// This is for getting a single van by ID
 export async function getVan(id) {
   const docRef = doc(db, "vans", id)
   const docSnap = await getDoc(docRef)
@@ -46,4 +50,28 @@ export async function getVan(id) {
     ...docSnap.data(),
     id: docSnap.id,
   }
+}
+
+// This is for registering a new user without a document ID
+export async function signUp({ username, email, password }) {
+  const userData = {
+    email: email,
+    name: username,
+    password: password,
+  }
+  // This is for registering a new user without a document ID
+  //const docRef = await addDoc(collection(db, "users"), userData)
+
+  try {
+    const docRef = await addDoc(collection(db, "users"), userData)
+  } catch (err) {
+    throw new Error("Error creating user")
+  }
+
+  // This is for registering a new user with a document ID
+  // try {
+  //   await setDoc(doc(db, "users", "140"), userData)
+  // } catch (err) {
+  //   throw new Error("Error creating user")
+  // }
 }
