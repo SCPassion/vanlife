@@ -1,9 +1,10 @@
 import Button from "../components/Button"
 import { signUp, signIn } from "../api"
 import { useState } from "react"
-import { replace, useNavigate } from "react-router"
+import { replace, useNavigate, useOutletContext } from "react-router"
 
 export default function Login() {
+  const { user, setUser } = useOutletContext()
   const [isSignUp, setIsSignUp] = useState(false)
   const [error, setError] = useState(null)
   const navigate = useNavigate()
@@ -25,6 +26,7 @@ export default function Login() {
         const user = await signIn({ email, password })
         console.log("user signed in: ", user)
         setError(null)
+        setUser(user)
         navigate("/", { replace: true })
       }
     } catch (error) {
