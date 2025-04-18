@@ -1,13 +1,15 @@
 import clsx from "clsx"
-
+import { useFormStatus } from "react-dom"
 export default function Button({
   children,
   onClick,
   backgroundColor,
   type = "button",
   textColor = "white",
-  ...rest
 }) {
+  const { pending } = useFormStatus()
+  const isDisabled = pending
+
   const classNames = clsx(
     "w-full cursor-pointer rounded-md py-[11px] text-base font-bold transition-all duration-200",
     {
@@ -25,7 +27,7 @@ export default function Button({
       onClick={onClick}
       className={`${classNames} ${textClass} disabled:cursor-not-allowed disabled:bg-gray-500`}
       type={type}
-      {...rest}
+      disabled={isDisabled}
     >
       {children}
     </button>

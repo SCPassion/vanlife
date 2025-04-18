@@ -1,6 +1,6 @@
 import Button from "../components/Button"
 import { signUp } from "../api"
-import { useFormStatus, useState } from "react"
+import { useState } from "react"
 
 export default function Login() {
   const [isSignUp, setIsSignUp] = useState(false)
@@ -8,7 +8,6 @@ export default function Login() {
   function enableSignUp() {
     setIsSignUp(true)
   }
-
   async function formAction(formData) {
     const { email, password } = Object.fromEntries(formData)
     const username = email.split("@")[0]
@@ -45,17 +44,16 @@ export default function Login() {
         <Button backgroundColor="orange" type="submit">
           {isSignUp ? "Sign Up" : "Sign in"}
         </Button>
-
-        <p className="mt-12 text-center text-base font-medium">
-          Don’t have an account?{" "}
-          <span
-            onClick={enableSignUp}
-            className="cursor-pointer font-bold text-[#FF8C38] shadow-md transition-transform hover:text-black hover:underline"
-          >
-            Click here to one now
-          </span>
-        </p>
       </form>
+      <p className="mt-12 text-center text-base font-medium">
+        Don’t have an account?{" "}
+        <span
+          onClick={enableSignUp}
+          className="cursor-pointer font-bold text-[#FF8C38] shadow-md transition-transform hover:text-black hover:underline"
+        >
+          Click here to one now
+        </span>
+      </p>
     </div>
   )
 }
