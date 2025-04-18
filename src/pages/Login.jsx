@@ -5,8 +5,8 @@ import { useState } from "react"
 export default function Login() {
   const [isSignUp, setIsSignUp] = useState(false)
 
-  function enableSignUp() {
-    setIsSignUp(true)
+  function toggleSignUp() {
+    setIsSignUp((prev) => !prev)
   }
   async function formAction(formData) {
     const { email, password } = Object.fromEntries(formData)
@@ -16,6 +16,7 @@ export default function Login() {
       if (isSignUp) {
         const userId = await signUp({ username, email, password })
         console.log("User created with ID:", userId)
+        toggleSignUp()
       } else {
         const user = await signIn({ email, password })
         console.log("user signed in: ", user)
@@ -57,10 +58,10 @@ export default function Login() {
       <p className="mt-12 text-center text-base font-medium">
         Don’t have an account?{" "}
         <span
-          onClick={enableSignUp}
+          onClick={toggleSignUp}
           className="cursor-pointer font-bold text-[#FF8C38] shadow-md transition-transform hover:text-black hover:underline"
         >
-          Click here to one now
+          {!isSignUp ? "Click here to one now" : "Back to sign in"}
         </span>
       </p>
     </div>

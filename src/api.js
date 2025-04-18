@@ -79,18 +79,24 @@ export async function signUp({ username, email, password }) {
   // }
 }
 
+// This is for signing in a user
 export async function signIn({ email, password }) {
+  // query to get the user by email
   const q = query(collection(db, "users"), where("email", "==", email))
   try {
+    // get the user by email
     const querySnapshot = await getDocs(q)
+    // check if the user exists
     if (querySnapshot.empty) {
       throw new Error("User not found")
     } else {
+      // check if the password is correct
       const user = querySnapshot.docs[0].data()
       if (user.password !== password) {
         throw new Error("Invalid password")
       } else {
-        return user
+        // return the user data
+        return { ...user, id: querySnapshot.docs[0].id }
       }
     }
   } catch (error) {
