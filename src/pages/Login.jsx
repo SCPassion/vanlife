@@ -4,7 +4,7 @@ import { useState } from "react"
 
 export default function Login() {
   const [isSignUp, setIsSignUp] = useState(false)
-
+  const [error, setError] = useState(null)
   function toggleSignUp() {
     setIsSignUp((prev) => !prev)
   }
@@ -17,13 +17,15 @@ export default function Login() {
         const userId = await signUp({ username, email, password })
         console.log("User created with ID:", userId)
         toggleSignUp()
+        setError(null)
       } else {
         const user = await signIn({ email, password })
         console.log("user signed in: ", user)
+        setError(null)
       }
     } catch (error) {
       console.error("Error:", error)
-      alert(error.message)
+      setError(error.message)
     }
   }
 
@@ -32,6 +34,11 @@ export default function Login() {
       <h1 className="mb-12 text-center text-4xl font-bold">
         {isSignUp ? "Sign up now!" : "Sign in to your account"}
       </h1>
+      {error && (
+        <h1 className="mb-4 text-center text-lg font-medium text-red-600">
+          {error}
+        </h1>
+      )}
 
       <form action={formAction} className="-center flex flex-col">
         <input

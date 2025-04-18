@@ -79,10 +79,10 @@ export async function signUp({ username, email, password }) {
     )
     const user = userCredential.user
     return user
-  } catch (err) {
-    const errorCode = err.code
-    const errorMessage = err.message
-    throw new Error(`${errorCode}: ${errorMessage}`)
+  } catch (error) {
+    const errorCode = error.code
+    const errorMessage = error.message
+    throw new Error(`${errorMessage}`)
   }
 
   // This is for registering a new user with a document ID
@@ -129,31 +129,31 @@ export async function signIn({ email, password }) {
     const user = userCredential.user
     return user
   } catch (error) {
-    const errorCode = err.code
-    const errorMessage = err.message
-    throw new Error(`${errorCode}: ${errorMessage}`)
+    const errorCode = error.code
+    const errorMessage = error.message
+    throw new Error(`${errorMessage}`)
   }
-
-  // export async function signIn({ email, password }) {
-  //   // query to get the user by email
-  //   const q = query(collection(db, "users"), where("email", "==", email))
-  //   try {
-  //     // get the user by email
-  //     const querySnapshot = await getDocs(q)
-  //     // check if the user exists
-  //     if (querySnapshot.empty) {
-  //       throw new Error("User not found")
-  //     } else {
-  //       // check if the password is correct
-  //       const user = querySnapshot.docs[0].data()
-  //       if (user.password !== password) {
-  //         throw new Error("Invalid password")
-  //       } else {
-  //         // return the user data
-  //         return { ...user, id: querySnapshot.docs[0].id }
-  //       }
-  //     }
-  //   } catch (error) {
-  //     throw new Error("Error signing in")
-  //   }
 }
+
+// export async function signIn({ email, password }) {
+//   // query to get the user by email
+//   const q = query(collection(db, "users"), where("email", "==", email))
+//   try {
+//     // get the user by email
+//     const querySnapshot = await getDocs(q)
+//     // check if the user exists
+//     if (querySnapshot.empty) {
+//       throw new Error("User not found")
+//     } else {
+//       // check if the password is correct
+//       const user = querySnapshot.docs[0].data()
+//       if (user.password !== password) {
+//         throw new Error("Invalid password")
+//       } else {
+//         // return the user data
+//         return { ...user, id: querySnapshot.docs[0].id }
+//       }
+//     }
+//   } catch (error) {
+//     throw new Error("Error signing in")
+//   }
