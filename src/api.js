@@ -1,6 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
+import { getAuth } from "firebase/auth"
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth"
+
 import {
   collection,
   getDocs,
@@ -32,6 +38,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const analytics = getAnalytics(app)
 const db = getFirestore(app)
+const auth = getAuth(app)
 
 // This is for getting all vans
 export async function getAllVans() {
@@ -65,10 +72,17 @@ export async function signUp({ username, email, password }) {
   //const docRef = await addDoc(collection(db, "users"), userData)
 
   try {
-    const docRef = await addDoc(collection(db, "users"), userData)
-    return docRef.id
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    )
+    const user = userCredential.user
+    return user
   } catch (err) {
-    throw new Error("Error creating user")
+    const errorCode = err.code
+    const errorMessage = err.message
+    throw new Error(`${errorCode}: ${errorMessage}`)
   }
 
   // This is for registering a new user with a document ID
@@ -79,27 +93,67 @@ export async function signUp({ username, email, password }) {
   // }
 }
 
+// export async function signUp({ username, email, password }) {
+//   const userData = {
+//     email: email,
+//     name: username,
+//     password: password,
+//   }
+//   // This is for registering a new user without a document ID
+//   //const docRef = await addDoc(collection(db, "users"), userData)
+
+//   try {
+//     const docRef = await addDoc(collection(db, "users"), userData)
+//     return docRef.id
+//   } catch (err) {
+//     throw new Error("Error creating user")
+//   }
+
+//   // This is for registering a new user with a document ID
+//   // try {
+//   //   await setDoc(doc(db, "users", "140"), userData)
+//   // } catch (err) {
+//   //   throw new Error("Error creating user")
+//   // }
+// }
+
 // This is for signing in a user
 export async function signIn({ email, password }) {
   // query to get the user by email
-  const q = query(collection(db, "users"), where("email", "==", email))
   try {
-    // get the user by email
-    const querySnapshot = await getDocs(q)
-    // check if the user exists
-    if (querySnapshot.empty) {
-      throw new Error("User not found")
-    } else {
-      // check if the password is correct
-      const user = querySnapshot.docs[0].data()
-      if (user.password !== password) {
-        throw new Error("Invalid password")
-      } else {
-        // return the user data
-        return { ...user, id: querySnapshot.docs[0].id }
-      }
-    }
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    )
+    const user = userCredential.user
+    return user
   } catch (error) {
-    throw new Error("Error signing in")
+    const errorCode = err.code
+    const errorMessage = err.message
+    throw new Error(`${errorCode}: ${errorMessage}`)
   }
+
+  // export async function signIn({ email, password }) {
+  //   // query to get the user by email
+  //   const q = query(collection(db, "users"), where("email", "==", email))
+  //   try {
+  //     // get the user by email
+  //     const querySnapshot = await getDocs(q)
+  //     // check if the user exists
+  //     if (querySnapshot.empty) {
+  //       throw new Error("User not found")
+  //     } else {
+  //       // check if the password is correct
+  //       const user = querySnapshot.docs[0].data()
+  //       if (user.password !== password) {
+  //         throw new Error("Invalid password")
+  //       } else {
+  //         // return the user data
+  //         return { ...user, id: querySnapshot.docs[0].id }
+  //       }
+  //     }
+  //   } catch (error) {
+  //     throw new Error("Error signing in")
+  //   }
 }
