@@ -9,6 +9,8 @@ import {
   getDoc,
   addDoc,
   setDoc,
+  query,
+  where,
 } from "firebase/firestore"
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -77,4 +79,21 @@ export async function signUp({ username, email, password }) {
   // }
 }
 
-export async function signIn({ email, password }) {}
+export async function signIn({ email, password }) {
+  const q = query(collection(db, "users"), where("email", "==", email))
+  try {
+    const querySnapshot = await getDocs(q)
+    if (querySnapshot.empty) {
+      throw new Error("User not found")
+    } else {
+      const user = querySnapshot.docs[0].data()
+      if (user.password !== password) {
+        throw new Error("Invalid password")
+      } else {
+        return user
+      }
+    }
+  } catch (error) {
+    throw new Error("Error signing in")
+  }
+}

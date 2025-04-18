@@ -1,5 +1,5 @@
 import Button from "../components/Button"
-import { signUp } from "../api"
+import { signUp, signIn } from "../api"
 import { useState } from "react"
 
 export default function Login() {
@@ -11,9 +11,18 @@ export default function Login() {
   async function formAction(formData) {
     const { email, password } = Object.fromEntries(formData)
     const username = email.split("@")[0]
-    if (isSignUp) {
-      const userId = await signUp({ username, email, password })
-      console.log("User created with ID:", userId)
+
+    try {
+      if (isSignUp) {
+        const userId = await signUp({ username, email, password })
+        console.log("User created with ID:", userId)
+      } else {
+        const user = await signIn({ email, password })
+        console.log("user signed in: ", user)
+      }
+    } catch (error) {
+      console.error("Error:", error)
+      alert(error.message)
     }
   }
 
