@@ -12,6 +12,7 @@ export default function Login() {
   const navigate = useNavigate()
   const location = useLocation()
   const message = location.state?.message || null
+  const pathReturn = location.state?.pathname || "/"
 
   useEffect(() => {
     if (message) {
@@ -49,7 +50,10 @@ export default function Login() {
         setError(null)
         setUser(user)
         localStorage.setItem("user", JSON.stringify(user)) // Store user in local storage
-        navigate("/host", { replace: true })
+        navigate(pathReturn, {
+          replace: true,
+          state: { pathFrom: location.pathname },
+        })
       }
     } catch (error) {
       console.error("Error:", error)

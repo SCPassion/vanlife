@@ -1,13 +1,14 @@
-import { Outlet, useOutletContext, Navigate } from "react-router"
+import { Outlet, useOutletContext, Navigate, useLocation } from "react-router"
 
 export default function Auth() {
   const { user } = useOutletContext()
+  const location = useLocation()
 
   if (!user) {
     return (
       <Navigate
         to="/login"
-        state={{ message: "Please login first!" }}
+        state={{ pathname: location.pathname, message: "Please login first!" }}
         replace
       />
     )
