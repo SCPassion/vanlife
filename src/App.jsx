@@ -7,6 +7,10 @@ import VanDetail from "./pages/VanDetail"
 import Login from "./pages/Login"
 import Auth from "./auth/Auth"
 import HostLayout from "./layouts/HostLayout"
+import Dashboard from "./pages/host/Dashboard"
+import Income from "./pages/host/Income"
+import Reviews from "./pages/host/Reviews"
+import HostVans from "./pages/host/HostVans"
 import PageNotFound from "./pages/PageNotFound"
 
 function App() {
@@ -23,10 +27,10 @@ function App() {
 
             <Route element={<Auth />}>
               <Route path="host" element={<HostLayout />}>
-                <Route index element={<h1>Host Dashboard</h1>} />
-                <Route path="income" element={<h1>Host Income</h1>} />
-                <Route path="vans" element={<h1>Host Vans</h1>} />
-                <Route path="reviews" element={<h1>Host Reviews</h1>} />
+                <Route index element={<Dashboard />} />
+                <Route path="income" element={<Income />} />
+                <Route path="vans" element={<HostVans />} />
+                <Route path="reviews" element={<Reviews />} />
               </Route>
             </Route>
 
