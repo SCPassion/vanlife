@@ -1,5 +1,5 @@
 import { FaStar } from "react-icons/fa"
-import { useOutletContext } from "react-router"
+import { useOutletContext, Link } from "react-router"
 import { FaArrowsRotate } from "react-icons/fa6"
 
 export default function () {
@@ -44,10 +44,18 @@ export default function () {
           <p className="mr-3 mb-7.5 font-bold text-[#161616]">
             Your listed vans
           </p>
-          <p className="text-base text-[#161616]">View all</p>
+          <Link
+            to="vans"
+            className="rounded-full bg-amber-100 px-4 py-2.5 text-base font-semibold text-[#161616] transition-all hover:scale-110 hover:bg-amber-200 hover:underline"
+          >
+            View all
+          </Link>
         </div>
         {vans.length === 0 ? (
-          <FaArrowsRotate className="mx-auto animate-spin" size={40} />
+          <FaArrowsRotate
+            className="mx-auto animate-spin hover:underline"
+            size={40}
+          />
         ) : (
           <div className="space-y-4">{vansElements}</div>
         )}
