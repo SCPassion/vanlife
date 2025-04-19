@@ -10,6 +10,12 @@ export default function Header() {
       </NavLink>
       <nav className="flex items-center space-x-3 text-base font-semibold text-[#4D4D4D]">
         <NavLink
+          to="host"
+          className={location.pathname.includes("/host") ? "underline" : ""}
+        >
+          Host
+        </NavLink>
+        <NavLink
           to="about"
           className={location.pathname.includes("/about") ? "underline" : ""}
         >

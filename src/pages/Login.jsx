@@ -1,13 +1,26 @@
 import Button from "../components/Button"
 import { signUp, signIn } from "../api"
-import { useState } from "react"
-import { replace, useNavigate, useOutletContext } from "react-router"
+import { useState, useEffect } from "react"
+import {
+  replace,
+  useNavigate,
+  useOutletContext,
+  useLocation,
+} from "react-router"
 
 export default function Login() {
   const { user, setUser } = useOutletContext()
   const [isSignUp, setIsSignUp] = useState(false)
   const [error, setError] = useState(null)
   const navigate = useNavigate()
+  const location = useLocation()
+  const message = location.state?.message || null
+
+  useEffect(() => {
+    if (message) {
+      setError(message)
+    }
+  }, [])
 
   function toggleSignUp() {
     setIsSignUp((prev) => !prev)
@@ -18,16 +31,16 @@ export default function Login() {
 
     try {
       if (isSignUp) {
-        const userId = await signUp({ username, email, password })
-        console.log("User created with ID:", userId)
+        const user = await signUp({ username, email, password })
+        //console.log("User created with ID:", user)
         toggleSignUp()
         setError(null)
       } else {
         const user = await signIn({ email, password })
-        console.log("user signed in: ", user)
+        //console.log("user signed in: ", user)
         setError(null)
         setUser(user)
-        navigate("/", { replace: true })
+        navigate("/host", { replace: true })
       }
     } catch (error) {
       console.error("Error:", error)
