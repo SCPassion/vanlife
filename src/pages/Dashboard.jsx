@@ -1,7 +1,13 @@
 import Button from "../components/Button"
-import { useSearchParams } from "react-router"
+import { useNavigate } from "react-router"
 
 export default function Dashboard() {
+  const navigate = useNavigate()
+
+  function goToHost() {
+    navigate("/host", { replace: true })
+  }
+
   return (
     <div className="bg-gray-400 bg-[url('/dashboard-img.png')] bg-cover bg-no-repeat px-6 py-16 text-white bg-blend-multiply">
       <h1 className="mb-6 text-4xl font-extrabold">
@@ -11,7 +17,9 @@ export default function Dashboard() {
         Add adventure to your life by joining the #vanlife movement. Rent the
         perfect van to make your perfect road trip.
       </p>
-      <Button backgroundColor="orange">Find your van</Button>
+      <Button backgroundColor="orange" onClick={goToHost}>
+        Find your van
+      </Button>
     </div>
   )
 }

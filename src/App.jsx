@@ -17,6 +17,7 @@ function App() {
             <Route path="vans" element={<Vans />} />
             <Route path="vans/:id" element={<VanDetail />} />
             <Route path="login" element={<Login />} />
+
             <Route element={<Auth />}>
               <Route path="host" element={<h1>Host</h1>} />
             </Route>
