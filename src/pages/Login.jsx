@@ -1,6 +1,8 @@
 import Button from "../components/Button"
 import { signUp, signIn } from "../api"
 import { useState, useEffect } from "react"
+import { TbDog } from "react-icons/tb"
+
 import {
   replace,
   useNavigate,
@@ -22,9 +24,15 @@ export default function Login() {
     }
   }, [])
 
+  function signOut() {
+    setUser(null)
+    alert("You have been signed out")
+  }
+
   function toggleSignUp() {
     setIsSignUp((prev) => !prev)
   }
+
   async function formAction(formData) {
     const { email, password } = Object.fromEntries(formData)
     const username = email.split("@")[0]
@@ -46,6 +54,20 @@ export default function Login() {
       console.error("Error:", error)
       setError(error.message)
     }
+  }
+
+  if (user) {
+    return (
+      <div className="mb-12 px-7">
+        <h1 className="mb-12 text-center text-4xl font-bold">
+          You are already logged in
+        </h1>
+        <TbDog size={250} className="mx-auto mb-12" />
+        <Button backgroundColor="orange" type="button" onClick={signOut}>
+          Sign out now!
+        </Button>
+      </div>
+    )
   }
 
   return (
@@ -81,6 +103,7 @@ export default function Login() {
           {isSignUp ? "Sign Up" : "Sign in"}
         </Button>
       </form>
+
       <p className="mt-12 text-center text-base font-medium">
         Don’t have an account?{" "}
         <span
