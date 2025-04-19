@@ -1,8 +1,19 @@
 import { FaStar } from "react-icons/fa"
 import { useOutletContext } from "react-router"
+import { FaArrowsRotate } from "react-icons/fa6"
 
 export default function () {
   const { vans } = useOutletContext()
+  const vansElements = vans.map((van) => (
+    <div className="flex items-center gap-4.25 rounded-md bg-[#FFFFFF] px-6 py-4.5 text-base">
+      <img src={van.imageUrl} alt={van.name} className="size-16.5 rounded-md" />
+      <div>
+        <h2 className="mb-1 text-xl font-semibold">{van.name}</h2>
+        <p>${van.price}/day</p>
+      </div>
+      <p className="ml-auto">Edit</p>
+    </div>
+  ))
 
   return (
     <section className="text-[#4D4D4D]">
@@ -26,6 +37,20 @@ export default function () {
           </p>
         </div>
         <p className="text-base text-[#161616]">Details</p>
+      </div>
+
+      <div className="bg-[#FFF7ED] px-6.5 py-9.5 text-2xl">
+        <div className="flex items-baseline justify-between">
+          <p className="mr-3 mb-7.5 font-bold text-[#161616]">
+            Your listed vans
+          </p>
+          <p className="text-base text-[#161616]">View all</p>
+        </div>
+        {vans.length === 0 ? (
+          <FaArrowsRotate className="mx-auto animate-spin" size={40} />
+        ) : (
+          <div className="space-y-4">{vansElements}</div>
+        )}
       </div>
     </section>
   )
