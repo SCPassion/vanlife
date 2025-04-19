@@ -3,12 +3,7 @@ import { signUp, signIn } from "../api"
 import { useState, useEffect } from "react"
 import { TbDog } from "react-icons/tb"
 
-import {
-  replace,
-  useNavigate,
-  useOutletContext,
-  useLocation,
-} from "react-router"
+import { useNavigate, useOutletContext, useLocation } from "react-router"
 
 export default function Login() {
   const { user, setUser } = useOutletContext()
@@ -28,7 +23,8 @@ export default function Login() {
 
   function signOut() {
     setUser(null)
-    alert("You have been signed out")
+    localStorage.removeItem("user") // Remove user from local storage
+    alert("You have been signed out!")
   }
 
   function toggleSignUp() {
@@ -43,6 +39,8 @@ export default function Login() {
       if (isSignUp) {
         const user = await signUp({ username, email, password })
         //console.log("User created with ID:", user)
+        alert("Congrats! You have created an account.")
+
         toggleSignUp()
         setError(null)
       } else {
@@ -50,6 +48,7 @@ export default function Login() {
         //console.log("user signed in: ", user)
         setError(null)
         setUser(user)
+        localStorage.setItem("user", JSON.stringify(user)) // Store user in local storage
         navigate("/host", { replace: true })
       }
     } catch (error) {
