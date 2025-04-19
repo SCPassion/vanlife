@@ -1,7 +1,7 @@
 import Button from "../components/Button"
 import { useNavigate } from "react-router"
 
-export default function Dashboard() {
+export default function Home() {
   const navigate = useNavigate()
 
   function goToHost() {
