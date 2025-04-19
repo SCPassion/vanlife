@@ -1,6 +1,9 @@
 import { FaStar } from "react-icons/fa"
+import { useOutletContext } from "react-router"
 
 export default function () {
+  const { vans } = useOutletContext()
+
   return (
     <section className="text-[#4D4D4D]">
       <div className="flex flex-col gap-8 bg-[#FFEAD0] px-6.5 py-9.25">

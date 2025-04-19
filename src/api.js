@@ -84,13 +84,6 @@ export async function signUp({ username, email, password }) {
     const errorMessage = error.message
     throw new Error(`${errorMessage}`)
   }
-
-  // This is for registering a new user with a document ID
-  // try {
-  //   await setDoc(doc(db, "users", "140"), userData)
-  // } catch (err) {
-  //   throw new Error("Error creating user")
-  // }
 }
 
 // export async function signUp({ username, email, password }) {
@@ -135,25 +128,23 @@ export async function signIn({ email, password }) {
   }
 }
 
-// export async function signIn({ email, password }) {
-//   // query to get the user by email
-//   const q = query(collection(db, "users"), where("email", "==", email))
-//   try {
-//     // get the user by email
-//     const querySnapshot = await getDocs(q)
-//     // check if the user exists
-//     if (querySnapshot.empty) {
-//       throw new Error("User not found")
-//     } else {
-//       // check if the password is correct
-//       const user = querySnapshot.docs[0].data()
-//       if (user.password !== password) {
-//         throw new Error("Invalid password")
-//       } else {
-//         // return the user data
-//         return { ...user, id: querySnapshot.docs[0].id }
-//       }
-//     }
-//   } catch (error) {
-//     throw new Error("Error signing in")
-//   }
+export async function getHostVans() {
+  // query to get the vans by hostId
+  const q = query(collection(db, "vans"), where("hostId", "==", "123"))
+  try {
+    // get the vans by hostId
+    const querySnapshot = await getDocs(q)
+    // check if the vans exist
+    if (querySnapshot.empty) {
+      throw new Error("No host vans found")
+    } else {
+      const vans = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }))
+      return vans
+    }
+  } catch (error) {
+    throw new Error("Error signing in")
+  }
+}

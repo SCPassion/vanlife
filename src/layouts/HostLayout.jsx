@@ -1,6 +1,23 @@
 import { NavLink, Outlet } from "react-router"
+import { useEffect, useState } from "react"
+import { getHostVans } from "../api"
 
 export default function HostLayout() {
+  const [vans, setVans] = useState([])
+
+  useEffect(() => {
+    async function fetchHostVans() {
+      try {
+        const data = await getHostVans()
+        setVans(data)
+      } catch (error) {
+        console.error("Error fetching host vans:", error)
+      }
+    }
+
+    fetchHostVans()
+  }, [])
+
   const activeClass = "underline font-bold text-[#161616]"
   return (
     <div>
@@ -35,7 +52,7 @@ export default function HostLayout() {
           Reviews
         </NavLink>
       </nav>
-      <Outlet />
+      <Outlet context={{ vans }} />
     </div>
   )
 }
