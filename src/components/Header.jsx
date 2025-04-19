@@ -11,19 +11,19 @@ export default function Header() {
       <nav className="flex items-center space-x-3 text-base font-semibold text-[#4D4D4D]">
         <NavLink
           to="host"
-          className={location.pathname.includes("/host") ? "underline" : ""}
+          className={location.pathname.startsWith("/host") ? "underline" : ""}
         >
           Host
         </NavLink>
         <NavLink
           to="about"
-          className={location.pathname.includes("/about") ? "underline" : ""}
+          className={location.pathname.startsWith("/about") ? "underline" : ""}
         >
           About
         </NavLink>
         <NavLink
           to="vans"
-          className={location.pathname.includes("/vans") ? "underline" : ""}
+          className={location.pathname.startsWith("/vans") ? "underline" : ""}
         >
           Vans
         </NavLink>
