@@ -3,8 +3,8 @@ import { NavLink, Outlet } from "react-router"
 export default function HostLayout() {
   const activeClass = "underline font-bold text-[#161616]"
   return (
-    <div className="px-6.5">
-      <nav className="mb-11.25 flex gap-7.25 text-lg font-medium text-[#4D4D4D]">
+    <div>
+      <nav className="mb-11.25 flex gap-7.25 px-6.5 text-lg font-medium text-[#4D4D4D]">
         <NavLink
           to="."
           relative="path"
