@@ -5,7 +5,7 @@ import About from "./pages/About"
 import Vans from "./pages/Vans"
 import VanDetail from "./pages/VanDetail"
 import Login from "./pages/Login"
-import Auth from "./components/auth/Auth"
+import Auth from "./auth/Auth"
 function App() {
   return (
     <>

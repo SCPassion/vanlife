@@ -21,6 +21,8 @@ export default function Login() {
   useEffect(() => {
     if (message) {
       setError(message)
+    } else {
+      setError(null)
     }
   }, [])
 
