@@ -6,6 +6,9 @@ import Vans from "./pages/Vans"
 import VanDetail from "./pages/VanDetail"
 import Login from "./pages/Login"
 import Auth from "./auth/Auth"
+import HostLayout from "./layouts/HostLayout"
+import PageNotFound from "./pages/PageNotFound"
+
 function App() {
   return (
     <>
@@ -19,8 +22,15 @@ function App() {
             <Route path="login" element={<Login />} />
 
             <Route element={<Auth />}>
-              <Route path="host" element={<h1>Host</h1>} />
+              <Route path="host" element={<HostLayout />}>
+                <Route index element={<h1>Host Dashboard</h1>} />
+                <Route path="income" element={<h1>Host Income</h1>} />
+                <Route path="vans" element={<h1>Host Vans</h1>} />
+                <Route path="reviews" element={<h1>Host Reviews</h1>} />
+              </Route>
             </Route>
+
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
