@@ -5,7 +5,7 @@ export default function HostVans() {
 
   const vansElements = vans.map((van) => (
     <Link to={van.id} key={van.id}>
-      <div className="mb-4 flex items-center gap-4.25 rounded-md bg-[#FFFFFF] px-6 py-4.5 text-base">
+      <div className="mb-4 flex items-center gap-4.25 rounded-md bg-[#FFFFFF] px-6 py-4.5 text-base transition-all duration-350 hover:scale-105 hover:shadow-xl">
         <img
           src={van.imageUrl}
           alt={van.name}
