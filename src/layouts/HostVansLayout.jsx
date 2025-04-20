@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Link, Outlet, useParams } from "react-router"
+import { NavLink, Link, Outlet, useParams } from "react-router"
 import { FaRegArrowAltCircleLeft } from "react-icons/fa"
 import { FaArrowsRotate } from "react-icons/fa6"
 
@@ -21,7 +21,6 @@ export default function HostVansLayout() {
     }
     fetchVan()
   }, [])
-  console.log("van", van)
   return (
     <div className="mx-6.5">
       <Link
@@ -34,7 +33,7 @@ export default function HostVansLayout() {
       </Link>
       {van ? (
         <div className="mb-11.25 rounded-md bg-white px-6.25 pt-5.75 shadow-md">
-          <div className="flex gap-5">
+          <div className="mb-6.5 flex gap-5">
             <img
               src={van.imageUrl}
               alt={van.name}
@@ -48,6 +47,34 @@ export default function HostVansLayout() {
               </p>
             </div>
           </div>
+
+          <nav className="mb-7 space-x-6.75 text-base text-[#4D4D4D]">
+            <NavLink
+              to="."
+              className={({ isActive }) =>
+                isActive ? "font-bold text-[#161616] underline" : ""
+              }
+              end
+            >
+              Details
+            </NavLink>
+            <NavLink
+              to="pricing"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-[#161616] underline" : ""
+              }
+            >
+              Pricing
+            </NavLink>
+            <NavLink
+              to="photos"
+              className={({ isActive }) =>
+                isActive ? "font-bold text-[#161616] underline" : ""
+              }
+            >
+              Photos
+            </NavLink>
+          </nav>
 
           <Outlet />
         </div>
