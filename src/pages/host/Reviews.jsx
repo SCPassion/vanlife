@@ -1,5 +1,5 @@
-import { Si1Panel } from "react-icons/si"
 import { FaStar } from "react-icons/fa"
+import Review from "../../components/Review"
 
 export default function Reviews() {
   return (
@@ -45,26 +45,17 @@ export default function Reviews() {
 
       <p className="mt-5 text-xl font-bold">Reviews (2)</p>
 
-      <div className="flex flex-col gap-2 border-b border-[#C7C7C7] py-6.25">
-        <div className="flex">
-          <FaStar className="mr-2 fill-[#FF8C38]" size={20} />
-          <FaStar className="mr-2 fill-[#FF8C38]" size={20} />
-          <FaStar className="mr-2 fill-[#FF8C38]" size={20} />
-          <FaStar className="mr-2 fill-[#FF8C38]" size={20} />
-          <FaStar className="mr-2 fill-[#FF8C38]" size={20} />
-        </div>
+      <Review name="Elliot" date="December 1, 2022">
+        The beach bum is such as awesome van! Such as comfortable trip. We had
+        it for 2 weeks and there was not a single issue. Super clean when we
+        picked it up and the host is very comfortable and understanding. Highly
+        recommend!
+      </Review>
 
-        <p className="text-[#8C8C8C]">
-          <span className="font-semibold text-[#161616]">Elliot</span> December
-          1, 2022
-        </p>
-        <p className="text-[#161616]">
-          The beach bum is such as awesome van! Such as comfortable trip. We had
-          it for 2 weeks and there was not a single issue. Super clean when we
-          picked it up and the host is very comfortable and understanding.
-          Highly recommend!
-        </p>
-      </div>
+      <Review name="Sandy" date="November 23, 2022">
+        This is our third time using the Modest Explorer for our travels and we
+        love it! No complaints, absolutely perfect!
+      </Review>
     </section>
   )
 }
