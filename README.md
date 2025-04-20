@@ -79,4 +79,4 @@ The project is organized as follows:
 
 ## Author
 
-This project was created by Bernard Wong to demonstrate modern web development practices and showcase skills in React, Firebase, Vite, and Tailwind CSS.
+This project was created by SCP to demonstrate modern web development practices and showcase skills in React, Firebase, Vite, and Tailwind CSS.
