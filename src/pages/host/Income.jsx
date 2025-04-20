@@ -8,34 +8,9 @@ import {
   Cell,
 } from "recharts"
 
-export default function Income() {
-  const data1 = [
-    {
-      name: "Ju",
-      income: 4000,
-    },
-    {
-      name: "Au",
-      income: 3000,
-    },
-    {
-      name: "Se",
-      income: 2000,
-    },
-    {
-      name: "Oc",
-      income: 2780,
-    },
-    {
-      name: "No",
-      income: 1890,
-    },
-    {
-      name: "De",
-      income: 2390,
-    },
-  ]
+import chartData from "../../chartData"
 
+export default function Income() {
   return (
     <section className="px-6.5 text-[#161616]">
       <h1 className="mb-11 text-4xl font-bold">Income</h1>
@@ -46,11 +21,11 @@ export default function Income() {
 
       <div className="h-[300px] w-full">
         <ResponsiveContainer>
-          <BarChart width={150} height={40} data={data1}>
+          <BarChart width={150} height={40} data={chartData}>
             <YAxis tick={{ fontSize: 20 }} />
             <XAxis dataKey="name" tick={{ fontSize: 20 }} />
             <Bar dataKey="income" fill="#4D4D4D" radius={[6, 5, 0, 0]}>
-              {data1.map((entry, index) => (
+              {chartData.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={index < 4 ? "#FFEAD0" : "#FF8C38"}
