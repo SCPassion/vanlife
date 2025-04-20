@@ -32,7 +32,7 @@ export default function HostVanLayout() {
         Back to all vans
       </Link>
       {van ? (
-        <div className="mb-11.25 rounded-md bg-white px-6.25 pt-5.75 shadow-md">
+        <div className="mb-11.25 rounded-md bg-white px-6.25 py-5.75 shadow-md">
           <div className="mb-6.5 flex gap-5">
             <img
               src={van.imageUrl}
@@ -76,7 +76,7 @@ export default function HostVanLayout() {
             </NavLink>
           </nav>
 
-          <Outlet />
+          <Outlet context={{ van }} />
         </div>
       ) : (
         <FaArrowsRotate
