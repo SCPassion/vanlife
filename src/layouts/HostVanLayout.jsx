@@ -5,7 +5,7 @@ import { FaArrowsRotate } from "react-icons/fa6"
 
 import { getVan } from "../api"
 import VanStatus from "../components/VanStatus"
-export default function HostVansLayout() {
+export default function HostVanLayout() {
   const { id } = useParams()
   const [van, setVan] = useState(null)
   const [error, setError] = useState(null)
