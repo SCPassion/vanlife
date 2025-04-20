@@ -5,7 +5,10 @@ import { FaArrowsRotate } from "react-icons/fa6"
 export default function () {
   const { vans } = useOutletContext()
   const vansElements = vans.map((van) => (
-    <div className="flex items-center gap-4.25 rounded-md bg-[#FFFFFF] px-6 py-4.5 text-base">
+    <div
+      className="flex items-center gap-4.25 rounded-md bg-[#FFFFFF] px-6 py-4.5 text-base"
+      key={van.id}
+    >
       <img src={van.imageUrl} alt={van.name} className="size-16.5 rounded-md" />
       <div>
         <h2 className="mb-1 text-xl font-semibold">{van.name}</h2>
