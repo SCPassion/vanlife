@@ -45,14 +45,14 @@ export default function Reviews() {
 
       <p className="mt-5 text-xl font-bold">Reviews (2)</p>
 
-      <Review name="Elliot" date="December 1, 2022">
+      <Review name="Elliot" date="December 1, 2022" rating={5}>
         The beach bum is such as awesome van! Such as comfortable trip. We had
         it for 2 weeks and there was not a single issue. Super clean when we
         picked it up and the host is very comfortable and understanding. Highly
         recommend!
       </Review>
 
-      <Review name="Sandy" date="November 23, 2022">
+      <Review name="Sandy" date="November 23, 2022" rating={5}>
         This is our third time using the Modest Explorer for our travels and we
         love it! No complaints, absolutely perfect!
       </Review>
