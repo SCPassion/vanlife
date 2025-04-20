@@ -49,7 +49,7 @@ export default function Income() {
           <BarChart width={150} height={40} data={data1}>
             <YAxis tick={{ fontSize: 20 }} />
             <XAxis dataKey="name" tick={{ fontSize: 20 }} />
-            <Bar dataKey="income" fill="#4D4D4D">
+            <Bar dataKey="income" fill="#4D4D4D" radius={[6, 5, 0, 0]}>
               {data1.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
