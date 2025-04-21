@@ -16,7 +16,7 @@ import PageNotFound from "./pages/PageNotFound"
 import HostVanLayout from "./layouts/HostVanLayout"
 import HostVanDetails from "./pages/host/HostVanDetails"
 import HostVanPricing from "./pages/host/HostVanPricing"
-import HostVanPhotos from "./pages/host/HostVanphotos"
+import HostVanPhotos from "./pages/host/HostVanPhotos"
 
 function App() {
   return (
