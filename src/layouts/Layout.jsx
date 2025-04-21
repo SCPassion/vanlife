@@ -19,7 +19,7 @@ export default function Layout() {
   // Causing an infinite loop
 
   return (
-    <div className="mx-auto max-w-xl border-2 bg-[#FFF7ED]">
+    <div className="mx-auto max-w-4xl">
       <Header />
       <Outlet context={{ user, setUser }} />
       <Footer />

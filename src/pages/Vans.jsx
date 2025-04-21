@@ -59,8 +59,10 @@ export default function Vans() {
 
   return (
     <section className="px-7 py-14">
-      <h1 className="mb-6 text-4xl font-bold">Explore our van options</h1>
-      <nav className="mb-14 flex items-center justify-between">
+      <h1 className="mb-6 text-center text-4xl font-bold">
+        Explore our van options
+      </h1>
+      <nav className="mb-14 flex flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-center sm:gap-8">
         <NavLink
           to="?type=simple"
           className={type === "simple" ? selectClassName : normalClassName}
